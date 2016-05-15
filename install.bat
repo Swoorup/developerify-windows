@@ -26,5 +26,8 @@ Powershell.exe -executionpolicy remotesigned -File scripts/install-chocolatey.ps
 REM --> Install chocolatey packages
 Powershell.exe -executionpolicy remotesigned -File scripts/install-choco-pkgs.ps1
 
+REM --> Install powerline fonts
+Powershell.exe -executionpolicy remotesigned -File scripts/install-powerline-fonts.ps1
+
 REM --> Post babun installation
 babun scripts/babun-post-install

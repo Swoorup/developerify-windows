@@ -1,1 +1,36 @@
-notepad.exe
+#!/bin/zsh
+# curl https://gist.githubusercontent.com/prabirshrestha/279d8b179d9353fe8694/raw/babun-post-install | zsh
+
+successfully() {
+	$* || (echo "\nfailed" 1>&2 && exit 1)
+}
+
+fancy_echo() {
+	echo "\n$1"
+}
+
+fancy_echo "Updating babun"
+	successfully pact update
+
+fancy_echo "Updating vimrc"
+	successfully curl https://raw.githubusercontent.com/Swoorup/archlinux-dotfiles/master/neovim/.config/nvim/init.vim -o ~/.vimrc
+    
+fancy_echo "Updating ~/.zshrc"
+	successfully curl https://gist.githubusercontent.com/prabirshrestha/279d8b179d9353fe8694/raw/.zshrc -o ~/.zshrc
+
+fancy_echo "Installing tmux"
+	successfully pact install tmux
+
+fancy_echo "Installing solarized dark theme and powerconsolas for mintty"
+	successfully curl https://gist.githubusercontent.com/prabirshrestha/279d8b179d9353fe8694/raw/.minttyrc -o ~/.minttyrc
+	
+fancy_echo "Installing the_silver_searcher (ag)"
+	successfully pact install the_silver_searcher
+	
+fancy_echo "Updating gitconfig"
+	successfully git config --global user.name "Swoorup Joshi"
+#	successfully git config --global user.email "mail@prabir.me"
+
+echo "execute 'chere -i -t mintty' in admin mode to enable Zsh Prompt Here"
+
+source ~/.zshrc
