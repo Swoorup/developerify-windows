@@ -1,5 +1,4 @@
 #!/bin/zsh
-# curl https://gist.githubusercontent.com/prabirshrestha/279d8b179d9353fe8694/raw/babun-post-install | zsh
 
 successfully() {
 	$* || (echo "\nfailed" 1>&2 && exit 1)
@@ -9,29 +8,44 @@ fancy_echo() {
 	echo "\n$1"
 }
 
-fancy_echo "Updating babun"
-	successfully pact update
+fancy_echo "Updating babun and changing mirror to australia"
+	successfully pact update -m http://mirror.internode.on.net/pub/cygwin/
 
 fancy_echo "Updating vimrc"
 	successfully curl https://raw.githubusercontent.com/Swoorup/archlinux-dotfiles/master/neovim/.config/nvim/init.vim -o ~/.vimrc
+
+fancy_echo "Installing tree"
+	successfully pact install tree
     
 fancy_echo "Updating ~/.zshrc"
-	successfully curl https://gist.githubusercontent.com/prabirshrestha/279d8b179d9353fe8694/raw/.zshrc -o ~/.zshrc
+    successfully curl https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS -o ~/.dircolors
+    successfully curl https://gist.githubusercontent.com/Swoorup/2f04aa783b8251836575f43340c0fe11/raw/.tmp.zshrc -o /tmp/zshrc
+    successfully cat /tmp/zshrc >> ~/.zshrc
 
 fancy_echo "Installing tmux"
 	successfully pact install tmux
+    successfully curl https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf -o ~/.tmux.conf
+    successfully curl https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf.local -o ~/.tmux.conf.local
 
 fancy_echo "Installing solarized dark theme and powerconsolas for mintty"
-	successfully curl https://gist.githubusercontent.com/prabirshrestha/279d8b179d9353fe8694/raw/.minttyrc -o ~/.minttyrc
+	successfully curl https://gist.githubusercontent.com/Swoorup/b63d372f9d94253f5ab80d8b53ab15b5/raw/.minttyrc -o ~/.minttyrc
 	
 fancy_echo "Installing the_silver_searcher (ag)"
 	successfully pact install the_silver_searcher
+
+fancy_echo "Installing fatty"
+	successfully git clone https://github.com/juho-p/fatty.git
+    successfully cd fatty
+    successfully make
+    successfully cp src/fatty.exe /bin
+    successfully sed -i s/mintty/fatty/g $BABUN_HOME/babun.bat
+
 	
 fancy_echo "Updating gitconfig"
 	successfully git config --global user.name "Swoorup Joshi"
     # fix issues with crlf and lf on unix and windows 
     successfully git config --global core.autocrlf input 
-#	successfully git config --global user.email "mail@prabir.me"
+#	successfully git config --global user.email "mail@swoorup.me"
 
 echo "execute 'chere -i -t mintty' in admin mode to enable Zsh Prompt Here"
 

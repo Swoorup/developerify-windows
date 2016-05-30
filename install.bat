@@ -30,4 +30,4 @@ REM --> Install powerline fonts
 Powershell.exe -executionpolicy remotesigned -File scripts/install-powerline-fonts.ps1
 
 REM --> Post babun installation
-babun scripts/babun-post-install
+call install-post-babun.bat
