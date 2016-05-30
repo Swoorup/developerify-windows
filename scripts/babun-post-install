@@ -29,6 +29,8 @@ fancy_echo "Installing the_silver_searcher (ag)"
 	
 fancy_echo "Updating gitconfig"
 	successfully git config --global user.name "Swoorup Joshi"
+    # fix issues with crlf and lf on unix and windows 
+    successfully git config --global core.autocrlf input 
 #	successfully git config --global user.email "mail@prabir.me"
 
 echo "execute 'chere -i -t mintty' in admin mode to enable Zsh Prompt Here"
