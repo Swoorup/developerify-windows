@@ -34,6 +34,7 @@ fancy_echo "Installing the_silver_searcher (ag)"
 	successfully pact install the_silver_searcher
 
 fancy_echo "Installing fatty"
+	successfully pact install gcc-core gcc-g++
 	successfully git clone https://github.com/juho-p/fatty.git
     successfully cd fatty
     successfully make
