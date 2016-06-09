@@ -17,6 +17,9 @@ try pact install tree
 spit_msg "Installing tmux..."
 try pact install tmux
 
+spit_msg "Install lua (Required for vim lua support)"
+pact install lua
+
 spit_msg "Installing the_silver_searcher (ag)"
 try pact install the_silver_searcher
 
