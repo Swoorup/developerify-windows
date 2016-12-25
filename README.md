@@ -1,3 +1,4 @@
+# Why
 There are often times you need to work with your windows machine. And can't have all the goodies that comes on a UNIX box. 
 
 I often myself switch between Linux and Windows environment depending on the particular application I would like to run. 
@@ -19,3 +20,7 @@ The code is available at http://github.com/Swoorup/developerify-windows
 ![alt text] (http://i.imgur.com/IXWBiDz.png)
 
 *<p style="text-align: center;"><sub>Disclaimer: Raise an issue if you find any bugs. However, I do not take the responsibility of damages done by this script in any way. Please run it at your own risk. Please read through the code files if in doubts. </sub></p>*
+
+# Update: 2:53 AM 26 December, 2016
+
+I, no longer use babun simply because all the cygwin based tools turned out to be too slow for my work, especially git. I now use msys2. I will update this shortly. If you have Windows 10 that is better, since you would have Windows Subsystem for Linux (WSL). But the only problem I find with it are its inability to run win32 native application, but looks like microsoft has progressed on that area too.
